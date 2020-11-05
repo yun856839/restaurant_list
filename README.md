@@ -32,7 +32,7 @@
 
   4. 執行 server
   ```
-  nodemon app.js
+  npm run dev
   ```
 
   5. 開啟任一瀏覽器瀏覽器，輸入網址
