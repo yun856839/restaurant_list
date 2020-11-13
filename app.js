@@ -2,6 +2,7 @@ const express = require('express')
 const exphbs = require('express-handlebars')
 const restaurantList = require('./restaurant.json')
 const mongoose = require('mongoose')
+const bodyParser = require('body-parser')
 const Restaurant = require('./models/restaurant')
 const app = express()
 const port = 3000
@@ -22,8 +23,9 @@ db.once('open', () => {
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
 
+
 // setting static files
-app.use(express.static('public'))
+app.use(express.static('public'), bodyParser.urlencoded({ extended: true }))
 
 // routes setting 
 app.get('/', (req, res) => {
@@ -32,6 +34,17 @@ app.get('/', (req, res) => {
     .then(restaurants => res.render('index', { restaurants }))
     .catch(error => console.error(error))
   // res.render('index', { restaurant: restaurantList.results })
+})
+
+app.get('/restaurants/new', (req, res) => {
+  return res.render('new')
+})
+
+app.post('/restaurants', (req, res) => {
+  restaurant = req.body
+  return Restaurant.create(restaurant)
+    .then(() => res.redirect('/'))
+    .catch(error => console.log(error))
 })
 
 // params :
