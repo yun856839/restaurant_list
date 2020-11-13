@@ -37,7 +37,9 @@
       <img class="rounded mx-auto d-block mb-4 w-100" src="{{ restaurant.image }}" alt="{{ restaurant.name }}"
         style="max-width: 600px;">
 
-      <a href="/">back</a>
+      <a href="/restaurants/{{ restaurant._id }}/edit"><button class="btn btn-primary mb-3">編輯</button></a>
+
+      <a href="/"><button class="btn btn-primary ml-2 mb-3">返回</button></a>
     </div>
   </div>
 </div>

@@ -23,22 +23,27 @@
       <div class="card-columns">
 
         {{#each restaurants}}
-        <a href="/restaurants/{{ this.id }}" class="text-secondary">
+        <a href="./restaurants/{{ this._id }}" class="text-secondary">
           <div class="card mb-3">
-            <img class="card-img-top" src="{{ this.image }}" alt="Sababa 沙巴巴中東美食">
+            <img class="card-img-top" src="{{ this.image }}" alt="">
             <div class="card-body p-3">
               <h6 class="card-title mb-1">{{ this.name }}</h6>
 
               <div class="restaurant-category mb-1">
-                <i class="fas fa-utensils pr-2"></i> {{ this.category }}
+                <i class="fas fa-utensils fa-lg"></i> {{ this.category }}
               </div>
 
-              <span class="badge badge-pill badge-danger font-weight-normal">
-                {{ this.rating }}
-                <i class="fas fa-star fa-xs"></i>
-                <a href="./restaurants/new"><i class="fas fa-plus fa-xs"></i></a>
-                <a href="./restaurants/{{ this._id }}"><i class="fas fa-info-circle fa-xs"></i></a>
-              </span>
+              <div class="d-flex justify-content-between">
+                <span class="badge badge-pill badge-danger font-weight-normal">
+                  {{ this.rating }}
+                  <i class="fas fa-star fa-lg"></i>
+                </span>
+
+                <div>
+                  <a href="./restaurants/new"><i class="fas fa-plus fa-lg"></i></a>
+                  <a href="./restaurants/{{ this._id }}/edit"><i class="fas fa-info-circle fa-lg"></i></a>
+                </div>
+              </div>
 
             </div>
           </div>

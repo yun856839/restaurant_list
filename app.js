@@ -33,7 +33,6 @@ app.get('/', (req, res) => {
     .lean()
     .then(restaurants => res.render('index', { restaurants }))
     .catch(error => console.error(error))
-  // res.render('index', { restaurant: restaurantList.results })
 })
 
 app.get('/restaurants/new', (req, res) => {
@@ -47,10 +46,8 @@ app.post('/restaurants', (req, res) => {
     .catch(error => console.log(error))
 })
 
-// params :
+// 詳細頁面(show.hbs) params :
 app.get('/restaurants/:restaurant_id', (req, res) => {
-  // const restaurant = restaurantList.results.find(restaurant => restaurant.id.toString() === req.params.restaurant_id)
-  // res.render('show', { restaurant: restaurant })
   const id = req.params.restaurant_id
   return Restaurant.findById(id)
     .lean()
@@ -58,6 +55,25 @@ app.get('/restaurants/:restaurant_id', (req, res) => {
     .catch(error => console.log(error))
 })
 
+// 編輯頁面(edit.hbs)
+app.get('/restaurants/:restaurant_id/edit', (req, res) => {
+  const id = req.params.restaurant_id
+  return Restaurant.findById(id)
+    .lean()
+    .then((restaurant) => res.render('edit', { restaurant }))
+    .catch(error => console.log(error))
+})
+
+app.post('/restaurants/:restaurant_id/edit', (req, res) => {
+  const id = req.params.restaurant_id
+  return Restaurant.findById(id)
+    .then(restaurant => {
+      restaurant = Object.assign(restaurant, req.body)
+      return restaurant.save()
+    })
+    .then(() => res.redirect(`/restaurants/${id}`))
+    .catch(error => console.log(error))
+})
 // querystring ?
 app.get('/search', (req, res) => {
   const keyword = req.query.keyword.trim()
