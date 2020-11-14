@@ -26,7 +26,7 @@
         <a href="./restaurants/{{ this._id }}" class="text-secondary">
           <div class="card mb-3">
 
-            <form action="./restaurants/{{ this._id }}/delete" method="POST" style="display: inline;">
+            <form action="./restaurants/{{ this._id }}/delete" method="POST" style="display: inline;" id="delete-btn">
               <button type="submit" style="float:right" class="btn btn-link"><i class="fas fa-times fa-lg"></i></button>
             </form>
 
@@ -47,6 +47,7 @@
                 <div>
                   <a href="./restaurants/new"><i class="fas fa-plus fa-lg"></i></a>
                   <a href="./restaurants/{{ this._id }}/edit"><i class="fas fa-edit fa-lg"></i></a>
+                  <a href="./restaurants/{{ this._id }}"><i class="fas fa-info-circle fa-lg"></i></a>
                 </div>
               </div>
 
