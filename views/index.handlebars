@@ -44,7 +44,7 @@
           <div class="card mb-3">
 
             <form action="./restaurants/{{ this._id }}?_method=DELETE" method="POST" style="display: inline;"
-              id="delete-btn">
+              onsubmit="return confirm('確定刪除嗎')">
               <button type="submit" style="float:right" class="btn btn-link"><i class="fas fa-times fa-lg"></i></button>
             </form>
 
