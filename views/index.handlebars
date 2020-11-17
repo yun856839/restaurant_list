@@ -26,7 +26,8 @@
         <a href="./restaurants/{{ this._id }}" class="text-secondary">
           <div class="card mb-3">
 
-            <form action="./restaurants/{{ this._id }}/delete" method="POST" style="display: inline;" id="delete-btn">
+            <form action="./restaurants/{{ this._id }}?_method=DELETE" method="POST" style="display: inline;"
+              id="delete-btn">
               <button type="submit" style="float:right" class="btn btn-link"><i class="fas fa-times fa-lg"></i></button>
             </form>
 
