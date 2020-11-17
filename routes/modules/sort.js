@@ -17,6 +17,8 @@ router.get('/', (req, res) => {
     current = '類別'
   } else if (name === 'location') {
     current = '地區'
+  } else if (name === 'rating') {
+    current = '評分'
   }
   Restaurant.find()
     .lean()
