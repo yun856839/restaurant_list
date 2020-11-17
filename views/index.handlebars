@@ -1,20 +1,37 @@
 <!-- search bar -->
 <div class="container search-bar">
-  <div class="search-bar-outer">
-    <div class="search-bar-inner">
-      <form action="/search">
-        <h4 class="mb-2">尋找餐廳：</h4>
-        <div class="input-group">
-          <input type="text" name="keyword" class="form-control" placeholder="輸入餐廳、分類" aria-label="Restaurant Name..."
-            value="{{ keyword }}" aria-describedby="search-button">
-          <div class="input-group-append">
-            <button class="btn btn-major" type="submit" id="search-button"><i class="fas fa-search"></i></button>
+  <div class="d-flex justify-content-between">
+    <div class="search-bar-outer">
+      <div class="search-bar-inner">
+        <form action="/search">
+          <h4 class="mb-2">尋找餐廳：</h4>
+          <div class="input-group">
+            <input type="text" name="keyword" class="form-control" placeholder="輸入餐廳、分類" aria-label="Restaurant Name..."
+              value="{{ keyword }}" aria-describedby="search-button">
+            <div class="input-group-append">
+              <button class="btn btn-major" type="submit" id="search-button"><i class="fas fa-search"></i></button>
+            </div>
           </div>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
+
+    <div class="dropdown">
+      <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
+        Sort {{#if current}} : {{current}} {{/if}}
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" href="/sort?name=name&sort=asc">A -> Z</a>
+        <a class="dropdown-item" href="/sort?name=name&sort=desc">Z -> A</a>
+        <a class="dropdown-item" href="/sort?name=category&sort=asc">類別</a>
+        <a class="dropdown-item" href="/sort?name=location&sort=asc">地區</a>
+      </div>
+    </div>
+
   </div>
 </div>
+
 
 <!-- restaurant list -->
 <div class="container mt-5">
@@ -46,7 +63,6 @@
                 </span>
 
                 <div>
-                  <a href="./restaurants/new"><i class="fas fa-plus fa-lg"></i></a>
                   <a href="./restaurants/{{ this._id }}/edit"><i class="fas fa-edit fa-lg"></i></a>
                   <a href="./restaurants/{{ this._id }}"><i class="fas fa-info-circle fa-lg"></i></a>
                 </div>
