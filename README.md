@@ -1,10 +1,12 @@
 # 專案畫面
-![image](https://github.com/yun856839/restaurant_list/blob/master/restaurantList(CRUD).jpg)
+![image](https://github.com/yun856839/restaurant_list/blob/master/restaurant_list(CRUD).jpg)
 
 # 我的餐廳清單 restaurant_list
 * 供使用者查看餐廳資訊，並使用搜尋功能查詢餐廳
 
 # 功能描述 (features)
+* 使用者可依餐廳名稱、類別搜尋餐廳
+* 使用者可依餐廳名稱、類別等排序餐廳
 * 使用者可以新增一家餐廳
 * 使用者可以瀏覽一家餐廳的詳細資訊
 * 使用者可以瀏覽全部所有餐廳
@@ -17,6 +19,7 @@
 * Express-Handlebars: 5.2.0
 * body-parser: 1.19.0
 * mongoose": 5.10.14
+* method-override: 3.0.0
 
 # 安裝與執行步驟(installation and execution)
   1. 打開終端機(Terminal)，Clone 此專案至本地電腦
