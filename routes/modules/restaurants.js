@@ -14,6 +14,44 @@ router.post('/', (req, res) => {
     .catch(error => console.log(error))
 })
 
+// 搜尋
+router.get('/searches', (req, res) => {
+  const keyword = req.query.keyword.trim().toLocaleLowerCase()
+  Restaurant.find()
+    .lean()
+    .then(restaurants => restaurants.filter(restaurant => {
+      return restaurant.name.toLocaleLowerCase().includes(keyword) ||
+        restaurant.category.toLocaleLowerCase().includes(keyword)
+    }))
+    .then(restaurants => res.render('index', { restaurants, keyword }))
+    .catch(error => console.error(error))
+})
+
+// 分類
+router.get('/sort', (req, res) => {
+  const name = req.query.name
+  const sort = req.query.sort
+  // console.log(req.query)
+  // console.log({ [name]: sort })
+  let current = ''
+  if (name === 'name' && sort === 'asc') {
+    current = 'A -> Z'
+  } else if (name === 'name' && sort === 'desc') {
+    current = 'Z -> A'
+  } else if (name === 'category') {
+    current = '類別'
+  } else if (name === 'location') {
+    current = '地區'
+  } else if (name === 'rating') {
+    current = '評分'
+  }
+  Restaurant.find()
+    .lean()
+    .sort({ [name]: sort })
+    .then(restaurants => res.render('index', { restaurants, current }))
+    .catch(error => console.error(error))
+})
+
 // 詳細頁面(show.hbs) params :
 router.get('/:restaurant_id', (req, res) => {
   const id = req.params.restaurant_id
