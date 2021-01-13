@@ -1,21 +1,46 @@
-const restaurantList = require('../../restaurant.json')
+const bcrypt = require('bcryptjs')
+
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
+
+const restaurantList = require('../../restaurant.json').results
 const Restaurant = require('../restaurant')
+const User = require('../user')
 const db = require('../../config/mongoose')
 
+const SEED_USERS = [
+  {
+    email: 'user1@example.com',
+    password: '12345678'
+  },
+  {
+    email: 'user2@example.com',
+    password: '12345678'
+  }
+]
+
 db.once('open', () => {
-  Restaurant.create(Object.assign(restaurantList.results, restaurantList))
-  // restaurantList.results.forEach((rest) => {
-  //   Restaurant.create({
-  //     name: rest.name,
-  //     name_en: rest.name_en,
-  //     category: rest.category,
-  //     image: rest.image,
-  //     location: rest.location,
-  //     phone: rest.phone,
-  //     google_map: rest.google_map,
-  //     rating: rest.rating,
-  //     description: rest.description
-  //   })
-  // })
-  console.log('done')
+  SEED_USERS.forEach((user, index) => {
+    bcrypt
+      .genSalt(10)
+      .then(salt => bcrypt.hash(user.password, salt))
+      .then(hash => User.create({
+        email: user.email,
+        password: hash
+      }))
+      .then(user => {
+        return Promise.all(
+          Array.from({ length: 3 }, (_, i) => {
+            return Restaurant.create(Object.assign(restaurantList[i + index * 3], { userId: user._id }))
+          })
+        )
+      })
+      .then(() => {
+        console.log('done')
+        process.exit()
+      })
+  })
 })
+
+
