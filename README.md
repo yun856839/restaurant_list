@@ -2,7 +2,7 @@
 ![image](https://github.com/yun856839/restaurant_list/blob/master/restaurant_list(CRUD).jpg)
 
 # 我的餐廳清單 restaurant_list
-* 供使用者查看餐廳資訊，並使用搜尋功能查詢餐廳
+* 供使用者登入查看個人的喜好餐廳資訊，並使用搜尋功能查詢餐廳
 
 # 功能描述 (features)
 * 使用者可依餐廳名稱、類別搜尋餐廳
@@ -12,14 +12,23 @@
 * 使用者可以瀏覽全部所有餐廳
 * 使用者可以修改一家餐廳的資訊
 * 使用者可以刪除一家餐廳
+* 使用者可以註冊帳號
+* 使用者可以透過 FB 登入
 
 # 環境建置與需求 (prerequisites)
 * Node.js: 13.5.0
-* Express: 4.17.1
-* Express-Handlebars: 5.2.0
+* bcryptjs": 2.4.3
 * body-parser: 1.19.0
-* mongoose": 5.10.14
+* connect-flash: 0.1.1
+* dotenv: 8.2.0
+* express: 4.17.1
+* express-session: 1.17.1
+* express-Handlebars: 5.2.0
+* mongoose: 5.10.14
 * method-override: 3.0.0
+* passport": 0.4.1
+* passport-facebook: 3.0.0
+* passport-local: 1.0.0
 
 # 安裝與執行步驟(installation and execution)
   1. 打開終端機(Terminal)，Clone 此專案至本地電腦
